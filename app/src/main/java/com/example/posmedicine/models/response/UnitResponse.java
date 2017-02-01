@@ -1,4 +1,4 @@
-package com.example.posmedicine.model.response;
+package com.example.posmedicine.models.response;
 
 /**
  * Created by Syaeful_U1438 on 01/27/17.
@@ -6,7 +6,7 @@ package com.example.posmedicine.model.response;
 
 import java.util.List;
 
-import com.example.posmedicine.model.Unit;
+import com.example.posmedicine.models.Unit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

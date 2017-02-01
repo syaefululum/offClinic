@@ -1,4 +1,4 @@
-package com.example.posmedicine.model;
+package com.example.posmedicine.models;
 
 /**
  * Created by Syaeful_U1438 on 01/27/17.

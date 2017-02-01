@@ -1,18 +1,15 @@
 package com.example.posmedicine.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.support.v7.widget.CardView;
 
 import com.example.posmedicine.MainActivity;
 import com.example.posmedicine.R;
-import com.example.posmedicine.UnitAdapter;
-import com.example.posmedicine.model.Unit;
+import com.example.posmedicine.models.Unit;
 
 import java.util.List;
 
