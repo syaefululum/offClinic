@@ -38,6 +38,9 @@ public interface ApiService {
     @GET("/clinic/web/v1/doctor")
     Call<UnitResponse> getDoctors();
 
+    @GET("/clinic/web/v1/doctor/doctors")
+    Call<UnitResponse> getDoctorsNameList();
+
     /**
      * Person
      */
