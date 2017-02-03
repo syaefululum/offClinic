@@ -2,8 +2,9 @@ package com.example.posmedicine;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,9 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
+import com.example.posmedicine.Adapter.UnitAdapter;
+import com.example.posmedicine.interfaces.UnitActions;
 import com.example.posmedicine.model.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
@@ -27,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, UnitActions, Parcelable {
 
     ApiService service;
 
@@ -111,17 +112,24 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+//            Intent m = new Intent(MainActivity.this,MedicineActivity.class);
+//            MainActivity.this.startActivity(m);
+            finish();
+            startActivity(new Intent(this, MedicineActivity.class));
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
         }
+
+//        else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -132,9 +140,9 @@ public class MainActivity extends AppCompatActivity
         service.getUnits().enqueue(new Callback<UnitResponse>() {
             @Override
             public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-               UnitAdapter unitAdater = new UnitAdapter(response.body().getUnit(),MainActivity.this);
+                UnitAdapter unitAdater = new UnitAdapter(response.body().getUnit(),MainActivity.this);
                 RecyclerView rvHistories = (RecyclerView)findViewById(R.id.unit_category);
-              rvHistories.setAdapter(unitAdater);
+                rvHistories.setAdapter(unitAdater);
             }
 
             @Override
@@ -143,4 +151,57 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    public void addUnit() {
+        service = RestClient.getInstance().getApiService();
+        getUnit();
+    }
+
+    @Override
+    public void editUnit() {
+        service = RestClient.getInstance().getApiService();
+        getUnit();
+    }
+
+    @Override
+    public void deleteUnit() {
+        service = RestClient.getInstance().getApiService();
+        getUnit();
+    }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        getUnit();
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    }
+
+    public MainActivity() {
+    }
+
+    protected MainActivity(Parcel in) {
+    }
+
+    public static final Creator<MainActivity> CREATOR = new Creator<MainActivity>() {
+        @Override
+        public MainActivity createFromParcel(Parcel source) {
+            return new MainActivity(source);
+        }
+
+        @Override
+        public MainActivity[] newArray(int size) {
+            return new MainActivity[size];
+        }
+    };
 }

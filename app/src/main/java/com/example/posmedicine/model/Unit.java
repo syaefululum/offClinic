@@ -14,12 +14,6 @@ public class Unit {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("address")
-    @Expose
-    private String address;
-    @SerializedName("phone")
-    @Expose
-    private String phone;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -43,22 +37,6 @@ public class Unit {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getCreatedAt() {
         return createdAt;
     }
@@ -75,4 +53,13 @@ public class Unit {
         this.updatedAt = updatedAt;
     }
 
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                '}';
+    }
 }

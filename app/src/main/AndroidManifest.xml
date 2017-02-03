@@ -21,7 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateUnitActivity"></activity>
+        <activity android:name=".CreateUnitActivity" />
+        <activity android:name=".EditUnitActivity" />
+        <activity
+            android:name=".MedicineActivity"
+            android:label="@string/title_activity_medicine"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
