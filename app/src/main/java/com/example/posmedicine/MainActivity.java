@@ -19,7 +19,7 @@ import android.view.MenuItem;
 
 import com.example.posmedicine.Adapter.UnitAdapter;
 import com.example.posmedicine.interfaces.UnitActions;
-import com.example.posmedicine.model.response.UnitResponse;
+import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 

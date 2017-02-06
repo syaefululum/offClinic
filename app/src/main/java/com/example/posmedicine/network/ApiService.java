@@ -1,8 +1,7 @@
 package com.example.posmedicine.network;
 
-import com.example.posmedicine.model.Unit;
-import com.example.posmedicine.model.response.MedicineResponse;
-import com.example.posmedicine.model.response.UnitResponse;
+import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.UnitResponse;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -11,7 +10,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**

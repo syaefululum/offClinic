@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.MedicineAdapter;
-import com.example.posmedicine.model.response.MedicineResponse;
+import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 

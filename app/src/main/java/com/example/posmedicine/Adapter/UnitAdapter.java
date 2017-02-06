@@ -6,7 +6,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,9 +15,8 @@ import android.view.ViewGroup;
 import com.example.posmedicine.EditUnitActivity;
 import com.example.posmedicine.MainActivity;
 import com.example.posmedicine.R;
-import com.example.posmedicine.interfaces.UnitActions;
-import com.example.posmedicine.model.Unit;
-import com.example.posmedicine.model.response.UnitResponse;
+import com.example.posmedicine.models.Unit;
+import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
