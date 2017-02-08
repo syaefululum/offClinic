@@ -1,7 +1,6 @@
 package com.example.posmedicine.models;
 
 /**
-
  * Created by Surya_N2267 on 2/6/2017.
  */
 
@@ -38,36 +37,6 @@ public class Doctor {
     @SerializedName("person")
     @Expose
     private Person person;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(String personId) {
-        this.personId = personId;
-    }
-
-    public String getRegNumber() {
-        return regNumber;
-    }
-
-    public void setRegNumber(String regNumber) {
-
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public Doctor() {
-    }
 
     /**
      *
@@ -166,4 +135,4 @@ public class Doctor {
         this.person = person;
     }
 }
-}
+

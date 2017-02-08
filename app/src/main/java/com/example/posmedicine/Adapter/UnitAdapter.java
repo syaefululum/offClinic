@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 //import com.example.posmedicine.EditUnitActivity;
+import com.example.posmedicine.EditUnitActivity;
 import com.example.posmedicine.R;
 
 import com.example.posmedicine.UnitActivity;
@@ -61,17 +62,18 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
                 Bundle extras = new Bundle();
                 extras.putInt("id", unit.get(position).getId());
                 extras.putString("unitName", unit.get(position).getName());
-//                extras.putParcelable("interface",activity);
-//
-//                Intent editUnit = new Intent(v.getContext(), EditUnitActivity.class);
-//                editUnit.putExtras(extras);
-//                v.getContext().startActivity(editUnit);
+                extras.putParcelable("interface",activity);
+
+                Intent editUnit = new Intent(v.getContext(), EditUnitActivity.class);
+                editUnit.putExtras(extras);
+                v.getContext().startActivity(editUnit);
             }
         });
 
         holder.bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("log","click");
                 int unitId = unit.get(position).getId();
                 deleteUnit(unitId);
                 activity.getUnit();

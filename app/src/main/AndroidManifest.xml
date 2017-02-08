@@ -40,7 +40,7 @@
 
         <activity android:name=".CreateMedicineActivity" />
         <activity android:name=".EditMedicineActivity"></activity>
-
+        <activity android:name=".EditUnitActivity"></activity>
     </application>
 
 </manifest>

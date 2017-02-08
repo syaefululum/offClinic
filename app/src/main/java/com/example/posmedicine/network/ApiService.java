@@ -58,14 +58,6 @@ public interface ApiService {
     @GET("/clinic/web/v1/medicine")
     Call<MedicineResponse> getMedicine();
 
-
-    /**
-     * Appointment
-     * Created by Surya on 02/06/17.
-     */
-    @GET("/clinic/web/v1/appointment/findby-doctor")
-    Call<AppointmentResponse> getAppointmentbyDoctor(
-
     @FormUrlEncoded
     @POST("/clinic/web/v1/medicine/create")
     Call<MedicineResponse> createMedicine(
@@ -95,4 +87,16 @@ public interface ApiService {
     Call<MedicineResponse> deleteMedicine(
             @Query("id") int id
     );
+
+
+    /**
+     * Appointment
+     * Created by Surya on 02/06/17.
+     */
+    @GET("/clinic/web/v1/appointment/findby-doctor")
+    Call<AppointmentResponse> getAppointmentbyDoctor(
+            @Query("id") int id
+    );
+
+
 }

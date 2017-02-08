@@ -25,8 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UnitActivity extends AppCompatActivity
-        implements UnitActions {
+public class UnitActivity extends AppCompatActivity implements UnitActions, Parcelable {
 
     ApiService service;
 
@@ -89,10 +88,38 @@ public class UnitActivity extends AppCompatActivity
         getUnit();
     }
 
-//    @Override
-//    public void onResume()
-//    {  // After a pause OR at startup
-//        super.onResume();
-//        getUnit();
-//    }
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        service = RestClient.getInstance().getApiService();
+        getUnit();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    }
+
+    public UnitActivity() {
+    }
+
+    protected UnitActivity(Parcel in) {
+    }
+
+    public static final Parcelable.Creator<UnitActivity> CREATOR = new Parcelable.Creator<UnitActivity>() {
+        @Override
+        public UnitActivity createFromParcel(Parcel source) {
+            return new UnitActivity(source);
+        }
+
+        @Override
+        public UnitActivity[] newArray(int size) {
+            return new UnitActivity[size];
+        }
+    };
 }
