@@ -1,6 +1,9 @@
 package com.example.posmedicine;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MedicineActivity extends AppCompatActivity {
+public class MedicineActivity extends AppCompatActivity implements Parcelable {
 
     ApiService service;
 
@@ -34,8 +37,10 @@ public class MedicineActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent createMedicine = new Intent(MedicineActivity.this,CreateMedicineActivity.class);
+                MedicineActivity.this.startActivity(createMedicine);
             }
         });
 
@@ -62,4 +67,38 @@ public class MedicineActivity extends AppCompatActivity {
            }
        });
     }
+
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        getMedicine();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+    }
+
+    public MedicineActivity() {
+    }
+
+    protected MedicineActivity(Parcel in) {
+    }
+
+    public static final Parcelable.Creator<MedicineActivity> CREATOR = new Parcelable.Creator<MedicineActivity>() {
+        @Override
+        public MedicineActivity createFromParcel(Parcel source) {
+            return new MedicineActivity(source);
+        }
+
+        @Override
+        public MedicineActivity[] newArray(int size) {
+            return new MedicineActivity[size];
+        }
+    };
 }

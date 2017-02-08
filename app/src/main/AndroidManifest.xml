@@ -27,6 +27,7 @@
             android:name=".MedicineActivity"
             android:label="@string/title_activity_medicine"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".UnitActivity"
             android:label="@string/title_activity_unit"
@@ -36,6 +37,10 @@
             android:label="@string/title_activity_appointment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AppointmentDetailActivity"></activity>
+
+        <activity android:name=".CreateMedicineActivity" />
+        <activity android:name=".EditMedicineActivity"></activity>
+
     </application>
 
 </manifest>

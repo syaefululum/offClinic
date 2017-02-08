@@ -1,6 +1,7 @@
 package com.example.posmedicine.models;
 
 /**
+
  * Created by Surya_N2267 on 2/6/2017.
  */
 
@@ -10,13 +11,14 @@ import com.google.gson.annotations.SerializedName;
 public class Doctor {
     @SerializedName("id")
     @Expose
-    private String id;
+
+    private int id;
     @SerializedName("person_id")
     @Expose
-    private String personId;
+    private int personId;
     @SerializedName("reg_number")
     @Expose
-    private String regNumber;
+    private int regNumber;
     @SerializedName("joined_date")
     @Expose
     private String joinedDate;
@@ -32,6 +34,7 @@ public class Doctor {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+
     @SerializedName("person")
     @Expose
     private Person person;
@@ -57,6 +60,60 @@ public class Doctor {
     }
 
     public void setRegNumber(String regNumber) {
+
+
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Doctor() {
+    }
+
+    /**
+     *
+     * @param updatedAt
+     * @param id
+     * @param regNumber
+     * @param status
+     * @param createdAt
+     * @param personId
+     * @param resignDate
+     * @param joinedDate
+     */
+    public Doctor(int id, int personId, int regNumber, String joinedDate, String resignDate, String status, String createdAt, String updatedAt) {
+        super();
+        this.id = id;
+        this.personId = personId;
+        this.regNumber = regNumber;
+        this.joinedDate = joinedDate;
+        this.resignDate = resignDate;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    public int getRegNumber() {
+        return regNumber;
+    }
+
+    public void setRegNumber(int regNumber) {
+
         this.regNumber = regNumber;
     }
 
@@ -100,6 +157,7 @@ public class Doctor {
         this.updatedAt = updatedAt;
     }
 
+
     public Person getPerson() {
         return person;
     }
@@ -107,4 +165,5 @@ public class Doctor {
     public void setPerson(Person person) {
         this.person = person;
     }
+}
 }

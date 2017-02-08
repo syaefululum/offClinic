@@ -9,14 +9,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.posmedicine.EditMedicineActivity;
 import com.example.posmedicine.MedicineActivity;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.Medicine;
 import com.example.posmedicine.models.Unit;
 
+import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.network.ApiService;
+import com.example.posmedicine.network.RestClient;
+
+import java.text.NumberFormat;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Syaeful_U1438 on 02-Feb-17.
@@ -42,14 +53,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MedicineAdapter.ViewHolder holder, final int position) {
-        Log.d("Unitfdsfsf", medicine.get(position).toString());
+
         holder.medicineName.setText(medicine.get(position).getName());
         holder.medicineType.setText(medicine.get(position).getType());
-        holder.medicineStock.setText(medicine.get(position).getQuantity());
-        holder.medicinePrice.setText(medicine.get(position).getPrice());
+        holder.medicineStock.setText(NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getQuantity())));
+        holder.medicinePrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getPrice())));
 
-
-//                unit.get(medicine.get(position).getUnitId()).;
+        holder.unitName1.setText(" / " + Integer.toString(medicine.get(position).getUnitId()));
+        holder.unitName2.setText(" " + Integer.toString(medicine.get(position).getUnitId()));
 
         holder.cvMedicine.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,11 +68,42 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
                 Bundle extras = new Bundle();
                 extras.putInt("idMedicine", medicine.get(position).getId());
                 extras.putString("medicineName", medicine.get(position).getName());
+                extras.putString("medicineType", medicine.get(position).getType());
+                extras.putString("medicinePrice", medicine.get(position).getPrice());
+                extras.putString("medicineStock", medicine.get(position).getQuantity());
+                extras.putString("expireDate", medicine.get(position).getDateExpiration());
+                extras.putString("stockedDate", medicine.get(position).getDateStock());
+                extras.putInt("medicineUnitId", medicine.get(position).getUnitId());
                 extras.putParcelable("interface", (Parcelable) activity);
 
-//                Intent editUnit = new Intent(v.getContext(), EditUnitActivity.class);
-//                editUnit.putExtras(extras);
-//                v.getContext().startActivity(editUnit);
+                Intent editMedicine = new Intent(v.getContext(), EditMedicineActivity.class);
+                editMedicine.putExtras(extras);
+                v.getContext().startActivity(editMedicine);
+            }
+        });
+
+        holder.bDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int medicineId = medicine.get(position).getId();
+                deleteMedicine(medicineId);
+                activity.getMedicine();
+            }
+        });
+    }
+
+    public void deleteMedicine(int medId){
+        ApiService service;
+        service = RestClient.getInstance().getApiService();
+        service.deleteMedicine(medId).enqueue(new Callback<MedicineResponse>() {
+            @Override
+            public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<MedicineResponse> call, Throwable t) {
+
             }
         });
     }
@@ -79,6 +121,9 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         public TextView medicineType;
         public TextView medicineStock;
         public TextView medicinePrice;
+        public TextView unitName1;
+        public TextView unitName2;
+        public ImageView bDelete;
         public ViewHolder(View v) {
             super(v);
             cvMedicine = (CardView)v.findViewById(R.id.categoryMedicine);
@@ -86,6 +131,9 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             medicineType = (TextView)v.findViewById(R.id.medicine_type);
             medicineStock = (TextView)v.findViewById(R.id.medicine_stock);
             medicinePrice = (TextView)v.findViewById(R.id.medicine_price);
+            unitName1 = (TextView)v.findViewById(R.id.unit_medicine_1);
+            unitName2 = (TextView)v.findViewById(R.id.unit_medicine_2);
+            bDelete = (ImageView) v.findViewById(R.id.bDeleteMedicine);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
