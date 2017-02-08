@@ -1,14 +1,14 @@
 package com.example.posmedicine;
 
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.posmedicine.interfaces.UnitActions;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
@@ -17,29 +17,43 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateUnitActivity extends AppCompatActivity {
-    Button bCreateUnit, bCancel;
-    EditText editTextUnitName;
+public class EditUnitActivity extends AppCompatActivity {
+    Button bUpdateUnit, bCancel;
+    TextView updateUnitName;
     ApiService service;
+    int unitId;
+    UnitActions unitActions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_unit);
+        setContentView(R.layout.activity_edit_unit);
 
-        bCreateUnit = (Button)findViewById(R.id.bCreateUnit);
-        bCancel = (Button)findViewById(R.id.bCancel);
-        editTextUnitName = (EditText)findViewById(R.id.editTextUnitName);
-
+        Bundle extras = getIntent().getExtras();
+        unitId = extras.getInt("id");
+        String unitName = extras.getString("unitName");
+        unitActions = extras.getParcelable("interface");
         service = RestClient.getInstance().getApiService();
 
-        bCreateUnit.setOnClickListener(new View.OnClickListener() {
+        updateUnitName = (TextView)findViewById(R.id.editUnitName);
+        updateUnitName.setText(unitName);
+
+        bUpdateUnit = (Button)findViewById(R.id.bUpdateUnit);
+        bCancel = (Button)findViewById(R.id.bCancel);
+
+
+        bUpdateUnit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String unitName = editTextUnitName.getText().toString().trim();
+                Log.d("unit id",unitId+"");
+                String unitName = updateUnitName.getText().toString().trim();
                 if(unitName.isEmpty() || unitName.length() == 0 || unitName.equals("") || unitName == null){
                     Snackbar.make(v, "Please input unit name", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }else{
-                    createNewUnit(unitName);
+                    updateUnitName(unitId,unitName);
+                   // unitActions.editUnit();
+                    finish();
+
                 }
             }
         });
@@ -50,25 +64,21 @@ public class CreateUnitActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
     }
 
-    public void createNewUnit(String unitName){
-
-        service.createUnit(unitName).enqueue(new Callback<UnitResponse>() {
+    public void updateUnitName(int unitId, String unitName){
+        service.updateUnit(unitId, unitName).enqueue(new Callback<UnitResponse>() {
             @Override
             public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-//                Intent mainActivity = new Intent(CreateUnitActivity.this,MainActivity.class);
-//                CreateUnitActivity.this.startActivity(mainActivity);
-                Log.v("finish Create","Finish Create");
+                Log.d("update", String.valueOf(response.body().getStatus()));
                 finish();
+//                response.body().getStatus();
+                unitActions.editUnit();
             }
 
             @Override
             public void onFailure(Call<UnitResponse> call, Throwable t) {
-                finish();
+
             }
         });
     }

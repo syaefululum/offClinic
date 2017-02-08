@@ -46,4 +46,34 @@ public interface ApiService {
 
     @GET("/clinic/web/v1/medicine")
     Call<MedicineResponse> getMedicine();
+
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/medicine/create")
+    Call<MedicineResponse> createMedicine(
+            @Field("name") String name,
+            @Field("quantity") String quantity,
+            @Field("unit_id") Integer unitId,
+            @Field("price") String price,
+            @Field("type") String type,
+            @Field("date_stock") String dateStock,
+            @Field("date_expiration") String dateExpiration
+    );
+
+    @FormUrlEncoded
+    @PUT("/clinic/web/v1/medicine/update")
+    Call<MedicineResponse> updateMedicine(
+            @Query("id") int id,
+            @Field("name") String name,
+            @Field("quantity") String quantity,
+            @Field("unit_id") Integer unitId,
+            @Field("price") String price,
+            @Field("type") String type,
+            @Field("date_stock") String dateStock,
+            @Field("date_expiration") String dateExpiration
+    );
+
+    @DELETE("/clinic/web/v1/medicine/delete")
+    Call<MedicineResponse> deleteMedicine(
+            @Query("id") int id
+    );
 }
