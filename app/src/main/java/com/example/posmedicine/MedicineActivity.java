@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.MedicineAdapter;
-import com.example.posmedicine.model.response.MedicineResponse;
+import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
@@ -24,6 +24,7 @@ public class MedicineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

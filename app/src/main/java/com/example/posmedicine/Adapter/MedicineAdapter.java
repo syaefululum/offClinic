@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.example.posmedicine.MedicineActivity;
 import com.example.posmedicine.R;
-import com.example.posmedicine.model.Medicine;
-import com.example.posmedicine.model.Unit;
+import com.example.posmedicine.models.Medicine;
+import com.example.posmedicine.models.Unit;
 
 import java.util.List;
 

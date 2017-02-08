@@ -22,11 +22,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateUnitActivity" />
-        <activity android:name=".EditUnitActivity" />
+        <!-- <activity android:name=".EditUnitActivity" /> -->
         <activity
             android:name=".MedicineActivity"
             android:label="@string/title_activity_medicine"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UnitActivity"
+            android:label="@string/title_activity_unit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AppointmentActivity"
+            android:label="@string/title_activity_appointment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AppointmentDetailActivity"></activity>
     </application>
 
 </manifest>

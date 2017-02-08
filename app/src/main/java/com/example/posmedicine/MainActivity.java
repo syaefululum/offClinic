@@ -2,8 +2,6 @@ package com.example.posmedicine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,18 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.posmedicine.Adapter.UnitAdapter;
-import com.example.posmedicine.interfaces.UnitActions;
-import com.example.posmedicine.model.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
-import com.example.posmedicine.network.RestClient;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, UnitActions, Parcelable {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     ApiService service;
 
@@ -37,12 +27,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.unit_category);
-        rv.setHasFixedSize(true);
-
-        LinearLayoutManager llm = new LinearLayoutManager(getBaseContext());
-        rv.setLayoutManager(llm);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,8 +34,6 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent createUnit = new Intent(MainActivity.this,CreateUnitActivity.class);
-                MainActivity.this.startActivity(createUnit);
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
@@ -66,10 +48,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        service = RestClient.getInstance().getApiService();
-
-        getUnit();
     }
 
     @Override
@@ -114,94 +92,26 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
 //            Intent m = new Intent(MainActivity.this,MedicineActivity.class);
 //            MainActivity.this.startActivity(m);
-            finish();
+//            finish();
             startActivity(new Intent(this, MedicineActivity.class));
         } else if (id == R.id.nav_gallery) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
+//            finish();
+            startActivity(new Intent(this, UnitActivity.class));
         }
-
-//        else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+        else if (id == R.id.nav_appointment) {
+//            finish();
+            startActivity(new Intent(this, AppointmentActivity.class));
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void getUnit(){
-        service.getUnits().enqueue(new Callback<UnitResponse>() {
-            @Override
-            public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-                UnitAdapter unitAdater = new UnitAdapter(response.body().getUnit(),MainActivity.this);
-                RecyclerView rvHistories = (RecyclerView)findViewById(R.id.unit_category);
-                rvHistories.setAdapter(unitAdater);
-            }
-
-            @Override
-            public void onFailure(Call<UnitResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    @Override
-    public void addUnit() {
-        service = RestClient.getInstance().getApiService();
-        getUnit();
-    }
-
-    @Override
-    public void editUnit() {
-        service = RestClient.getInstance().getApiService();
-        getUnit();
-    }
-
-    @Override
-    public void deleteUnit() {
-        service = RestClient.getInstance().getApiService();
-        getUnit();
-    }
-
-    @Override
-    public void onResume()
-    {  // After a pause OR at startup
-        super.onResume();
-        getUnit();
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-    }
-
-    public MainActivity() {
-    }
-
-    protected MainActivity(Parcel in) {
-    }
-
-    public static final Creator<MainActivity> CREATOR = new Creator<MainActivity>() {
-        @Override
-        public MainActivity createFromParcel(Parcel source) {
-            return new MainActivity(source);
-        }
-
-        @Override
-        public MainActivity[] newArray(int size) {
-            return new MainActivity[size];
-        }
-    };
+//    @Override
+//    public void onResume()
+//    {  // After a pause OR at startup
+//        super.onResume();
+//        getUnit();
+//    }
 }
