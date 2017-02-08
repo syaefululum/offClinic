@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.posmedicine.EditUnitActivity;
-import com.example.posmedicine.MainActivity;
+//import com.example.posmedicine.EditUnitActivity;
 import com.example.posmedicine.R;
+
+import com.example.posmedicine.UnitActivity;
+
 import com.example.posmedicine.models.Unit;
 import com.example.posmedicine.models.response.UnitResponse;
 import com.example.posmedicine.network.ApiService;
@@ -32,9 +34,9 @@ import retrofit2.Response;
 
 public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
     private List<Unit> unit;
-    private MainActivity activity;
+    private UnitActivity activity;
 
-    public UnitAdapter(List<Unit> unit, MainActivity activity) {
+    public UnitAdapter(List<Unit> unit, UnitActivity activity) {
         this.unit = unit;
         this.activity = activity;
     }
@@ -59,11 +61,11 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
                 Bundle extras = new Bundle();
                 extras.putInt("id", unit.get(position).getId());
                 extras.putString("unitName", unit.get(position).getName());
-                extras.putParcelable("interface",activity);
-
-                Intent editUnit = new Intent(v.getContext(), EditUnitActivity.class);
-                editUnit.putExtras(extras);
-                v.getContext().startActivity(editUnit);
+//                extras.putParcelable("interface",activity);
+//
+//                Intent editUnit = new Intent(v.getContext(), EditUnitActivity.class);
+//                editUnit.putExtras(extras);
+//                v.getContext().startActivity(editUnit);
             }
         });
 

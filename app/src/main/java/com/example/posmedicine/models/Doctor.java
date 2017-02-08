@@ -1,7 +1,8 @@
 package com.example.posmedicine.models;
 
 /**
- * Created by Surya_N2267 on 2/1/2017.
+
+ * Created by Surya_N2267 on 2/6/2017.
  */
 
 import com.google.gson.annotations.Expose;
@@ -10,6 +11,7 @@ import com.google.gson.annotations.SerializedName;
 public class Doctor {
     @SerializedName("id")
     @Expose
+
     private int id;
     @SerializedName("person_id")
     @Expose
@@ -32,6 +34,33 @@ public class Doctor {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+
+    @SerializedName("person")
+    @Expose
+    private Person person;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
+
+    public String getRegNumber() {
+        return regNumber;
+    }
+
+    public void setRegNumber(String regNumber) {
+
 
     /**
      * No args constructor for use in serialization
@@ -84,6 +113,7 @@ public class Doctor {
     }
 
     public void setRegNumber(int regNumber) {
+
         this.regNumber = regNumber;
     }
 
@@ -127,4 +157,13 @@ public class Doctor {
         this.updatedAt = updatedAt;
     }
 
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+}
 }

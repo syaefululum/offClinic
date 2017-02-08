@@ -35,10 +35,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicine_stock"
+
+                android:textSize="15sp"
+                android:text="100 Bottle"
+                android:layout_below="@+id/medicine_type"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicine_price"
+                android:textSize="15sp"
+                android:text="Rp 100 /Bottle"
+                android:layout_alignBaseline="@+id/medicine_stock"
+                android:layout_alignBottom="@+id/medicine_stock"
+                android:layout_toStartOf="@+id/bDeleteMedicine" />
+
                 android:textSize="15sp"
                 android:text="100"
                 android:layout_below="@+id/medicine_type"
                 android:layout_alignParentStart="true" />
+
 
             <ImageView android:id="@+id/bDeleteMedicine"
                 android:layout_width="wrap_content"
@@ -47,6 +64,9 @@
                 android:layout_marginRight="15dp"
                 app:srcCompat="@android:drawable/ic_delete"
                 android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp" />
                 android:layout_alignParentEnd="true" />
 
             <TextView

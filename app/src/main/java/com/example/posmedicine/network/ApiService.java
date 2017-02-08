@@ -1,5 +1,7 @@
 package com.example.posmedicine.network;
 
+
+import com.example.posmedicine.models.response.AppointmentResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
 
@@ -17,6 +19,10 @@ import retrofit2.http.Query;
  */
 
 public interface ApiService {
+    /**
+     * Unit
+     * Created by Syaeful_U1438 on 01/27/17.
+     */
     @GET("/clinic/web/v1/unit")
     Call<UnitResponse> getUnits();
 
@@ -44,8 +50,21 @@ public interface ApiService {
             @Query("id") int id
     );
 
+    /**
+     * Medicine
+     * Created by Syaeful_U1438 on 01/27/17.
+     */
+
     @GET("/clinic/web/v1/medicine")
     Call<MedicineResponse> getMedicine();
+
+
+    /**
+     * Appointment
+     * Created by Surya on 02/06/17.
+     */
+    @GET("/clinic/web/v1/appointment/findby-doctor")
+    Call<AppointmentResponse> getAppointmentbyDoctor(
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/medicine/create")

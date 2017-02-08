@@ -1,23 +1,21 @@
-package com.example.posmedicine.model.response;
+package com.example.posmedicine.models.response;
 
 /**
- * Created by Syaeful_U1438 on 01/27/17.
+ * Created by Surya_N2267 on 2/6/2017.
  */
 
-import java.util.List;
-
-import com.example.posmedicine.model.Unit;
+import com.example.posmedicine.models.Person;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UnitResponse {
+public class PersonResponse {
 
     @SerializedName("status")
     @Expose
     private int status;
     @SerializedName("data")
     @Expose
-    private List<Unit> unit = null;
+    private Person person;
 
     public int getStatus() {
         return status;
@@ -27,12 +25,12 @@ public class UnitResponse {
         this.status = status;
     }
 
-    public List<Unit> getUnit() {
-        return unit;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUnit(List<Unit> unit) {
-        this.unit = unit;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
 }
