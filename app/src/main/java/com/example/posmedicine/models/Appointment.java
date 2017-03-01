@@ -6,12 +6,13 @@ package com.example.posmedicine.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
-public class Appointment {
-
-    @SerializedName("id")
+public class Appointment extends SugarRecord{
+    @SerializedName("_id")
     @Expose
-    private String id;
+    private Long _id;
     @SerializedName("date")
     @Expose
     private String date;
@@ -37,12 +38,12 @@ public class Appointment {
     @Expose
     private Patient patient;
 
-    public String getId() {
-        return id;
+    public Long getId() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(Long _id) {
+        this._id = _id;
     }
 
     public String getDate() {

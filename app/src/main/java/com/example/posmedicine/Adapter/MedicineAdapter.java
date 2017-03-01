@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.posmedicine.EditMedicineActivity;
 import com.example.posmedicine.MedicineActivity;
@@ -35,7 +36,7 @@ import retrofit2.Response;
 
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
     private List<Medicine> medicine;
-    private List<Unit> unit;
+   // private List<Unit> unit;
     private MedicineActivity activity;
 
     public MedicineAdapter(List<Medicine> medicine, MedicineActivity activity){
@@ -53,14 +54,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(MedicineAdapter.ViewHolder holder, final int position) {
-
+        Unit unit = medicine.get(position).getUnit();
         holder.medicineName.setText(medicine.get(position).getName());
         holder.medicineType.setText(medicine.get(position).getType());
         holder.medicineStock.setText(NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getQuantity())));
         holder.medicinePrice.setText("Rp. " + NumberFormat.getInstance().format(Double.parseDouble(medicine.get(position).getPrice())));
 
-        holder.unitName1.setText(" / " + Integer.toString(medicine.get(position).getUnitId()));
-        holder.unitName2.setText(" " + Integer.toString(medicine.get(position).getUnitId()));
+        holder.unitName1.setText("" + unit.getName());
+        holder.unitName2.setText(" / " + unit.getName());
 
         holder.cvMedicine.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -103,7 +104,9 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
             @Override
             public void onFailure(Call<MedicineResponse> call, Throwable t) {
-
+                Toast toast = Toast.makeText(activity.getApplicationContext(), "Delete Success", Toast.LENGTH_SHORT);
+                toast.show();
+                activity.onResume();
             }
         });
     }

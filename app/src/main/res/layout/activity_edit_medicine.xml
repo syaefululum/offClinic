@@ -54,16 +54,6 @@
         android:layout_alignBottom="@+id/emedicine_price"
         android:layout_toEndOf="@+id/emedicine_price" />
 
-    <TextView
-        android:text=" / "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eunitSelected_2"
-        android:layout_alignBaseline="@+id/emedicine_stock"
-        android:layout_alignBottom="@+id/emedicine_stock"
-        android:layout_alignStart="@+id/emedicine_stock"
-        android:layout_marginStart="126dp" />
-
     <EditText
         android:hint="Medicine Stock"
         android:layout_width="wrap_content"
@@ -74,6 +64,57 @@
         android:layout_below="@+id/emedicine_type"
         android:layout_toEndOf="@+id/eunitSelected_1" />
 
+    <TextView
+        android:text=" / "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eunitSelected_2"
+        android:layout_alignBaseline="@+id/emedicine_stock"
+        android:layout_alignBottom="@+id/emedicine_stock"
+        android:layout_toEndOf="@+id/emedicine_stock"
+        android:layout_marginStart="17dp"/>
+
+    <TextView
+        android:text="Expire Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emedicine_price"
+        android:id="@+id/expire_date" />
+
+    <Button
+        android:layout_marginStart="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/setExpireDate"
+        android:onClick="showDatePickerDialog"
+        android:layout_below="@+id/emedicine_price"
+        android:layout_alignBaseline="@+id/expire_date"
+        android:layout_alignBottom="@+id/expire_date"
+        android:layout_toEndOf="@+id/expire_date" />
+
+    <TextView
+        android:layout_marginStart="17dp"
+        android:text="Stock Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stocked_date"
+        android:layout_below="@+id/emedicine_price"
+        android:layout_alignBaseline="@+id/setExpireDate"
+        android:layout_alignBottom="@+id/setExpireDate"
+        android:layout_toEndOf="@+id/setExpireDate" />
+
+    <Button
+        android:layout_marginStart="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/setStockedDate"
+        android:onClick="showDatePickerDialog"
+        android:layout_below="@+id/emedicine_price"
+        android:layout_alignBaseline="@+id/stocked_date"
+        android:layout_alignBottom="@+id/stocked_date"
+        android:layout_toEndOf="@+id/stocked_date" />
 
     <Button
         android:text="Update"
@@ -91,39 +132,5 @@
         android:layout_alignBaseline="@+id/bEditMedicine"
         android:layout_alignBottom="@+id/bEditMedicine"
         android:layout_alignEnd="@+id/emedicine_stock" />
-
-    <TextView
-        android:text="Expire Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/emedicine_price"
-        android:layout_alignParentStart="true"
-        android:id="@+id/expire_date" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:id="@+id/setExpireDate"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@+id/emedicine_price"
-        android:layout_toEndOf="@+id/bEditMedicine" />
-
-    <TextView
-        android:text="Stock Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/stocked_date"
-        android:layout_below="@+id/expire_date"
-        android:layout_alignStart="@+id/bCancel" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:id="@+id/setStockedDate"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@+id/emedicine_stock"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

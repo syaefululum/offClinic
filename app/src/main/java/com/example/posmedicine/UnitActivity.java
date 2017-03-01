@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.posmedicine.Adapter.UnitAdapter;
 import com.example.posmedicine.interfaces.UnitActions;
@@ -85,7 +87,9 @@ public class UnitActivity extends AppCompatActivity implements UnitActions, Parc
     @Override
     public void deleteUnit() {
         service = RestClient.getInstance().getApiService();
-        getUnit();
+        getUnit();;
+//        service = RestClient.getInstance().getApiService();
+//        getUnit();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.posmedicine;
 
 import android.os.Parcelable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -62,7 +64,8 @@ public class EditMedicineActivity extends AppCompatActivity {
         expireDate = (TextView)findViewById(R.id.expire_date);
         stockedDate = (TextView)findViewById(R.id.stocked_date);
 
-
+        setExpireDate = (Button) findViewById(R.id.setExpireDate);
+        setStockedDate = (Button) findViewById(R.id.setStockedDate);
 
         eMedicineName.setText(medicineName);
         eMedicineType.setText(medicineType);
@@ -70,8 +73,6 @@ public class EditMedicineActivity extends AppCompatActivity {
         eMedicineStock.setText(medicineStock);
         stockedDate.setText(eStockedDate);
         expireDate.setText(eExpireDate);
-
-
 
         setItemSelected(medicineUnitId);
 
@@ -98,12 +99,42 @@ public class EditMedicineActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        setExpireDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("DATE", 1);
+
+                DialogFragment newFragment = new CreateMedicineActivity.DatePickerFragment();
+                newFragment.setArguments(bundle);
+
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+
+        setStockedDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("DATE", 2);
+
+                DialogFragment newFragment = new CreateMedicineActivity.DatePickerFragment();
+                newFragment.setArguments(bundle);
+
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+
     }
 
     public void updateUnitName(int medicineId, String medicineName, String medicineType, String medicinePrice, String medicineStock, String expireDate, String stockedDate, int unitId){
         service.updateMedicine(medicineId, medicineName, medicineStock, unitId, medicinePrice, medicineType, stockedDate, expireDate).enqueue(new Callback<MedicineResponse>() {
             @Override
             public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Update Success", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
             }
 

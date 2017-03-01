@@ -14,7 +14,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.posmedicine.models.response.MedicineResponse;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -39,13 +41,16 @@ public class CreateMedicineActivity extends AppCompatActivity {
     AutoCompleteTextView autocomplete;
     String[] arrName;
     Integer[] arrId;
-    Button bCreateMedicine, bCancel, setExpireDate, setStockedDate;
+    Button bCreateMedicine, bCancel, setStockedDate;
     EditText cMedicineName;
     EditText cMedicineType;
     EditText cMedicinePrice;
     EditText cMedicineStock;
 
     TextView expireDate, stockedDate;
+    String inputExpireDate, inputStockedDate;
+
+    Button setExpireDate;
 
     private Integer itemSelected;
 
@@ -76,10 +81,10 @@ public class CreateMedicineActivity extends AppCompatActivity {
                 String medicineType = cMedicineType.getText().toString().trim();
                 String medicinePrice = cMedicinePrice.getText().toString().trim();
                 String medicineStock = cMedicineStock.getText().toString().trim();
-                String expireDate = setExpireDate.getText().toString();
-                String stockedDate = setStockedDate.getText().toString();
+                inputExpireDate =  expireDate.getText().toString();
+                inputStockedDate = stockedDate.getText().toString();
                 Integer medicineUnit = getItemSelected();
-                createNewMedicine(medicineName, medicineStock,medicineUnit,medicinePrice, medicineType, expireDate,stockedDate);
+                createNewMedicine(medicineName, medicineStock,medicineUnit,medicinePrice, medicineType, inputExpireDate,inputStockedDate);
             }
         });
 
@@ -200,6 +205,9 @@ public class CreateMedicineActivity extends AppCompatActivity {
         service.createMedicine(medicineName,medicineStock,medicineUnit, medicinePrice, medicineType, expireDate, stockedDate).enqueue(new Callback<MedicineResponse>() {
             @Override
             public void onResponse(Call<MedicineResponse> call, Response<MedicineResponse> response) {
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Create Success", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
 //                Intent medicineActivity = new Intent(CreateMedicineActivity.this,MedicineActivity.class);
 //                CreateMedicineActivity.this.startActivity(medicineActivity);

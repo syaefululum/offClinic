@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_appointment) {
 //            finish();
             startActivity(new Intent(this, AppointmentActivity.class));
+        }else if(id == R.id.nav_pharmacy_chasier){
+            startActivity(new Intent(this, PharmacyChasierActivity.class));
+        }else if(id == R.id.nav_cashier_transaction_data){
+            startActivity(new Intent(this, CashierTransactionActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

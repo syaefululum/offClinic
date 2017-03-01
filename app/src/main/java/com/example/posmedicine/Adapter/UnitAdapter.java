@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 //import com.example.posmedicine.EditUnitActivity;
 import com.example.posmedicine.EditUnitActivity;
@@ -76,7 +77,7 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
                 Log.v("log","click");
                 int unitId = unit.get(position).getId();
                 deleteUnit(unitId);
-                activity.getUnit();
+
             }
         });
     }
@@ -87,12 +88,14 @@ public class UnitAdapter extends RecyclerView.Adapter<UnitAdapter.ViewHolder> {
         service.deleteUnit(unitId).enqueue(new Callback<UnitResponse>() {
             @Override
             public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-
+                Log.v("surya", "sayurrrrrr");
             }
 
             @Override
             public void onFailure(Call<UnitResponse> call, Throwable t) {
-
+                Toast toast = Toast.makeText(activity.getApplicationContext(), "Delete Success", Toast.LENGTH_SHORT);
+                toast.show();
+                activity.onResume();
             }
         });
     }

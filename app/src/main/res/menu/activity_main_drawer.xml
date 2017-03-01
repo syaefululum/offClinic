@@ -14,6 +14,14 @@
             android:id="@+id/nav_appointment"
             android:icon="@drawable/ic_menu_share"
             android:title="Appointment" />
+        <item
+            android:id="@+id/nav_pharmacy_chasier"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Pharmacy Cashier" />
+        <item
+            android:id="@+id/nav_cashier_transaction_data"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Transaction Data" />
         <!--<item-->
             <!--android:id="@+id/nav_manage"-->
             <!--android:icon="@drawable/ic_menu_manage"-->

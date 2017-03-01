@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.posmedicine.interfaces.UnitActions;
 import com.example.posmedicine.models.response.UnitResponse;
@@ -70,7 +71,8 @@ public class EditUnitActivity extends AppCompatActivity {
         service.updateUnit(unitId, unitName).enqueue(new Callback<UnitResponse>() {
             @Override
             public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
-                Log.d("update", String.valueOf(response.body().getStatus()));
+                Toast toast = Toast.makeText(getApplicationContext(), "Update Success", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
 //                response.body().getStatus();
                 unitActions.editUnit();

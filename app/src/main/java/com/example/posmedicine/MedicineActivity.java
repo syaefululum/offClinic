@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.posmedicine.Adapter.MedicineAdapter;
@@ -56,6 +57,7 @@ public class MedicineActivity extends AppCompatActivity implements Parcelable {
                llm.setOrientation(LinearLayoutManager.VERTICAL);
 
                MedicineAdapter medicineAdapter = new MedicineAdapter(response.body().getMedicine(),MedicineActivity.this);
+               Log.d("mamam", String.valueOf(response.body().getMedicine()));
                RecyclerView rvMedicine = (RecyclerView)findViewById(R.id.rvMedicine);
                rvMedicine.setLayoutManager(llm);
                rvMedicine.setAdapter(medicineAdapter);
@@ -72,6 +74,7 @@ public class MedicineActivity extends AppCompatActivity implements Parcelable {
     public void onResume()
     {  // After a pause OR at startup
         super.onResume();
+        service = RestClient.getInstance().getApiService();
         getMedicine();
     }
 

@@ -371,9 +371,9 @@
     <string name="fa_icon_houzz" translatable="false">&#xf27c;</string>
     <string name="fa_icon_html5" translatable="false">&#xf13b;</string>
     <string name="fa_icon_i_cursor" translatable="false">&#xf246;</string>
-    <string name="fa_icon_id_badge" translatable="false">&#xf2c1;</string>
-    <string name="fa_icon_id_card" translatable="false">&#xf2c2;</string>
-    <string name="fa_icon_id_card_o" translatable="false">&#xf2c3;</string>
+    <string name="fa_iconid_badge" translatable="false">&#xf2c1;</string>
+    <string name="fa_iconid_card" translatable="false">&#xf2c2;</string>
+    <string name="fa_iconid_card_o" translatable="false">&#xf2c3;</string>
     <string name="fa_icon_ils" translatable="false">&#xf20b;</string>
     <string name="fa_icon_image" translatable="false">&#xf03e;</string>
     <string name="fa_icon_imdb" translatable="false">&#xf2d8;</string>

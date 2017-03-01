@@ -18,7 +18,7 @@ public class Patient {
     @SerializedName("registered_date")
     @Expose
     private String registeredDate;
-    @SerializedName("person_id")
+    @SerializedName("personid")
     @Expose
     private String personId;
     @SerializedName("created_at")

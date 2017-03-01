@@ -4,10 +4,13 @@ package com.example.posmedicine.models;
  * Created by Syaeful_U1438 on 01/27/17.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Unit {
+public class Unit implements Parcelable {
     @SerializedName("id")
     @Expose
     private int id;
@@ -62,4 +65,40 @@ public class Unit {
                 ", updatedAt='" + updatedAt + '\'' +
                 '}';
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.updatedAt);
+    }
+
+    public Unit() {
+    }
+
+    protected Unit(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.createdAt = in.readString();
+        this.updatedAt = in.readString();
+    }
+
+    public static final Parcelable.Creator<Unit> CREATOR = new Parcelable.Creator<Unit>() {
+        @Override
+        public Unit createFromParcel(Parcel source) {
+            return new Unit(source);
+        }
+
+        @Override
+        public Unit[] newArray(int size) {
+            return new Unit[size];
+        }
+    };
 }

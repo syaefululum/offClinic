@@ -12,7 +12,7 @@ public class Doctor {
     @Expose
 
     private int id;
-    @SerializedName("person_id")
+    @SerializedName("personid")
     @Expose
     private int personId;
     @SerializedName("reg_number")

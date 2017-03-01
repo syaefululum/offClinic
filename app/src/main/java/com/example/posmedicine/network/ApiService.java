@@ -1,9 +1,15 @@
 package com.example.posmedicine.network;
 
 
+import com.example.posmedicine.models.CashierHeaderTransaction;
 import com.example.posmedicine.models.response.AppointmentResponse;
+import com.example.posmedicine.models.response.CashierHeaderResponse;
+import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
+import com.example.posmedicine.models.response.PurchaseDetailResponse;
+import com.example.posmedicine.models.response.PurchaseHeaderResponse;
 import com.example.posmedicine.models.response.UnitResponse;
+import com.example.posmedicine.models.response.UnitSingleDataResponse;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -34,7 +40,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/unit/create")
-    Call<UnitResponse> createUnit(
+    Call<UnitSingleDataResponse> createUnit(
             @Field("name") String name
     );
 
@@ -95,8 +101,41 @@ public interface ApiService {
      */
     @GET("/clinic/web/v1/appointment/findby-doctor")
     Call<AppointmentResponse> getAppointmentbyDoctor(
-            @Query("id") int id
+            @Query("id") Long id
     );
 
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/purchase-header/create")
+    Call<PurchaseHeaderResponse> createPurchaseHeader(
+            @Field("date") String date,
+            @Field("total_price") String totalPrice,
+            @Field("paid") String paid
+    );
+
+    @GET("/clinic/web/v1/purchase-header")
+    Call<CashierHeaderResponse> getTransactionHeader();
+
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/purchase-detail/create")
+    Call<PurchaseDetailResponse> createPurchaseDetail(
+            @Field("purchase_headerid") Integer headerId,
+            @Field("medicine_id") Integer medicineId,
+            @Field("quantity") int quantity,
+            @Field("unit_id") Integer unitId,
+            @Field("price") String price,
+            @Field("total_price") String totalPrice
+    );
+
+    @GET("/clinic/web/v1/doctor")
+    Call<DoctorResponse> getDoctor();
+
+    @FormUrlEncoded
+    @POST("/clinic/web/v1/appointment/create")
+    Call<AppointmentResponse> createAppointment(
+            @Field("date") String appointmentDate,
+            @Field("doctor_id") Integer doctorid,
+            @Field("patient_id") Integer patientid,
+            @Field("status") String status
+    );
 
 }

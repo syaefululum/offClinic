@@ -4,10 +4,13 @@ package com.example.posmedicine.models;
  * Created by Syaeful_U1438 on 02-Feb-17.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Medicine {
+public class Medicine implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -18,7 +21,7 @@ public class Medicine {
     @SerializedName("quantity")
     @Expose
     private String quantity;
-    @SerializedName("unit_id")
+    @SerializedName("unitid")
     @Expose
     private int unitId;
     @SerializedName("price")
@@ -39,6 +42,9 @@ public class Medicine {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("unit")
+    @Expose
+    private Unit unit;
 
     public int getId() {
         return id;
@@ -120,6 +126,14 @@ public class Medicine {
         this.updatedAt = updatedAt;
     }
 
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
     @Override
     public String toString() {
         return "Medicine{" +
@@ -137,4 +151,52 @@ public class Medicine {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.quantity);
+        dest.writeInt(this.unitId);
+        dest.writeString(this.price);
+        dest.writeString(this.type);
+        dest.writeString(this.dateStock);
+        dest.writeString(this.dateExpiration);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.updatedAt);
+        dest.writeParcelable(this.unit, flags);
+    }
+
+    public Medicine() {
+    }
+
+    protected Medicine(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.quantity = in.readString();
+        this.unitId = in.readInt();
+        this.price = in.readString();
+        this.type = in.readString();
+        this.dateStock = in.readString();
+        this.dateExpiration = in.readString();
+        this.createdAt = in.readString();
+        this.updatedAt = in.readString();
+        this.unit = in.readParcelable(Unit.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Medicine> CREATOR = new Parcelable.Creator<Medicine>() {
+        @Override
+        public Medicine createFromParcel(Parcel source) {
+            return new Medicine(source);
+        }
+
+        @Override
+        public Medicine[] newArray(int size) {
+            return new Medicine[size];
+        }
+    };
 }

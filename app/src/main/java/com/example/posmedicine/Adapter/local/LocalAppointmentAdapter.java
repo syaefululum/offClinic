@@ -1,54 +1,50 @@
-package com.example.posmedicine.Adapter;
+package com.example.posmedicine.Adapter.local;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.posmedicine.AppointmentActivity;
 import com.example.posmedicine.FontManager;
 import com.example.posmedicine.R;
 import com.example.posmedicine.models.Appointment;
 import com.example.posmedicine.models.Doctor;
+import com.example.posmedicine.models.local.LocalAppointment;
 
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 /**
- * Created by Surya_N2267 on 2/6/2017.
+ * Created by Syaeful_U1438 on 28-Feb-17.
  */
 
-public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.ViewHolder> {
-    private List<Appointment> appointment;
-    private List<Doctor> doctor;
+public class LocalAppointmentAdapter extends RecyclerView.Adapter<LocalAppointmentAdapter.ViewHolder> {
+    private List<LocalAppointment> appointment;
     private AppointmentActivity activity;
 
-    public AppointmentAdapter(List<Appointment> appointment, AppointmentActivity activity) {
+    public LocalAppointmentAdapter(List<LocalAppointment> appointment, AppointmentActivity activity) {
         this.appointment = appointment;
         this.activity = activity;
     }
 
     @Override
-    public AppointmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public LocalAppointmentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_row_appointment, parent, false);
 
-        return new AppointmentAdapter.ViewHolder(v);
+        return new LocalAppointmentAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(AppointmentAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(LocalAppointmentAdapter.ViewHolder holder, final int position) {
         holder.appointmentDate.setText(appointment.get(position).getDate());
-        holder.appointmentDoctor.setText(appointment.get(position).getDoctor().getPerson().getName());
-        holder.appointmentPatient.setText(appointment.get(position).getPatient().getPerson().getName());
+        holder.appointmentDoctor.setText(appointment.get(position).getDoctorName());
+        holder.appointmentPatient.setText(appointment.get(position).getPatientName());
         holder.appointmentStatus.setText(appointment.get(position).getStatus());
 
         if (holder.appointmentStatus.getText().toString().equals("Canceled")) {
@@ -63,20 +59,15 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         } else {
             holder.appointmentStatus.setTextColor(Color.BLUE);
         }
-        Log.d(TAG, holder.appointmentStatus.getText().toString());
-
         holder.appointmentUpdateAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Element " + position + " clicked.");
-//                Bundle extras = new Bundle();
-//                extras.putInt("idAppointment", appointment.get(position).getid());
-//                extras.putString("appointmentName", appointment.get(position).getName());
-//                extras.putParcelable("interface", (Parcelable) activity);
-
-//                Intent editDoctor = new Intent(v.getContext(), EditDoctorActivity.class);
-//                editDoctor.putExtras(extras);
-//                v.getContext().startActivity(editDoctor);
+                Toast toast = Toast.makeText(activity.getApplicationContext(), "Clicked", Toast.LENGTH_SHORT);
+                toast.show();
+                LocalAppointment tempApp = appointment.get(position);
+                tempApp.status = "Approved";
+                tempApp.save();
+                activity.onResume();
             }
         });
     }
@@ -86,10 +77,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         return appointment.size();
     }
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        // private final TextView textView;
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public CardView cvAppointment;
         public TextView appointmentDate;
         public TextView appointmentDoctor;
@@ -97,8 +85,6 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         public TextView appointmentStatus;
         public TextView appointmentUpdateAccept;
         public TextView appointmentUpdateReject;
-
-
         public ViewHolder(View v) {
             super(v);
             Typeface iconFont = FontManager.getTypeface(v.getContext(), FontManager.FONTAWESOME);
@@ -115,10 +101,9 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
+//
                 }
             });
-            //textView = (TextView) v.findViewById(R.id.textView);
         }
     }
 }

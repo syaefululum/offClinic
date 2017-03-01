@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.posmedicine.models.response.UnitResponse;
+import com.example.posmedicine.models.response.UnitSingleDataResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
 
@@ -57,17 +59,18 @@ public class CreateUnitActivity extends AppCompatActivity {
 
     public void createNewUnit(String unitName){
 
-        service.createUnit(unitName).enqueue(new Callback<UnitResponse>() {
+        service.createUnit(unitName).enqueue(new Callback<UnitSingleDataResponse>() {
             @Override
-            public void onResponse(Call<UnitResponse> call, Response<UnitResponse> response) {
+            public void onResponse(Call<UnitSingleDataResponse> call, Response<UnitSingleDataResponse> response) {
 //                Intent mainActivity = new Intent(CreateUnitActivity.this,MainActivity.class);
 //                CreateUnitActivity.this.startActivity(mainActivity);
-                Log.v("finish Create","Finish Create");
+                Toast toast = Toast.makeText(getApplicationContext(), "Create Success", Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
             }
 
             @Override
-            public void onFailure(Call<UnitResponse> call, Throwable t) {
+            public void onFailure(Call<UnitSingleDataResponse> call, Throwable t) {
                 finish();
             }
         });

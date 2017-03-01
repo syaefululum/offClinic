@@ -9,8 +9,9 @@ import java.util.List;
 import com.example.posmedicine.models.Appointment;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class AppointmentResponse {
+public class AppointmentResponse{
     @SerializedName("status")
     @Expose
     private int status;
