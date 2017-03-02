@@ -2,16 +2,17 @@ package com.example.posmedicine.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
 /**
  * Created by Surya_N2267 on 2/6/2017.
  */
 
-public class Person {
+public class Person{
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -43,11 +44,11 @@ public class Person {
     @Expose
     private String updatedAt;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

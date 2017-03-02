@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.posmedicine.models.Appointment;
 import com.example.posmedicine.models.local.LocalAppointment;
 import com.example.posmedicine.models.response.AppointmentResponse;
+import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.network.ApiService;
 import com.example.posmedicine.network.RestClient;
@@ -40,11 +41,11 @@ public class CreateAppointmentActivity extends AppCompatActivity {
     AutoCompleteTextView autocomplete;
     TextView iAppointmentDate,iAppointmentTime;
     String[] arrName;
-    Integer[] arrId;
+    Long[] arrId;
     ApiService service;
 
 
-    private Integer docterSelected;
+    private Long docterSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         bCreateAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Integer doctorId = getDocterSelected();
+                Long doctorId = getDocterSelected();
                 Integer patientId = 1;
                 String status = "Pending";
                 String date = iAppointmentDate.getText().toString() + " " + iAppointmentTime.getText().toString() + ":00";
@@ -148,7 +149,7 @@ public class CreateAppointmentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DoctorResponse> call, Response<DoctorResponse> response) {
                 arrName = new String[response.body().getDoctor().size()];
-                arrId = new Integer[response.body().getDoctor().size()];
+                arrId = new Long[response.body().getDoctor().size()];
                 for (int i = 0; i < response.body().getDoctor().size(); i++) {
                     arrName[i] = new String(response.body().getDoctor().get(i).getPerson().getName());
                     arrId[i] = response.body().getDoctor().get(i).getId();
@@ -181,23 +182,25 @@ public class CreateAppointmentActivity extends AppCompatActivity {
         });
     }
 
-    public void setDocterSelected(Integer docterSelected) {
+    public void setDocterSelected(Long docterSelected) {
         this.docterSelected = docterSelected;
     }
 
-    public int getDocterSelected() {
+    public Long getDocterSelected() {
         return this.docterSelected;
     }
 
-    public void createAppointment(String date, Integer doctorId,Integer patientId,String status){
-        service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentResponse>() {
+    public void createAppointment(String date, Long doctorId,Integer patientId,String status){
+        service.createAppointment(date,doctorId,patientId,status).enqueue(new Callback<AppointmentSingleResponse>() {
             @Override
-            public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
-                Log.d("asd","Berhasil");
+            public void onResponse(Call<AppointmentSingleResponse> call, Response<AppointmentSingleResponse> response) {
+//                Appointment appData = response.body().getAppointment();
+//                appData.save();
+                finish();
             }
 
             @Override
-            public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+            public void onFailure(Call<AppointmentSingleResponse> call, Throwable t) {
                 Log.d("asd","gagal");
             }
         });
@@ -205,7 +208,6 @@ public class CreateAppointmentActivity extends AppCompatActivity {
 //       LocalAppointment appData = new LocalAppointment(patientId,doctorId,1,"Surya","Bruce",date,"Pending");
 //        appData.save();
 
-        Appointment appData = new Appointment();
-        appData.save();
+
     }
 }

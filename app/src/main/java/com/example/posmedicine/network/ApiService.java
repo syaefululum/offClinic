@@ -3,6 +3,7 @@ package com.example.posmedicine.network;
 
 import com.example.posmedicine.models.CashierHeaderTransaction;
 import com.example.posmedicine.models.response.AppointmentResponse;
+import com.example.posmedicine.models.response.AppointmentSingleResponse;
 import com.example.posmedicine.models.response.CashierHeaderResponse;
 import com.example.posmedicine.models.response.DoctorResponse;
 import com.example.posmedicine.models.response.MedicineResponse;
@@ -131,9 +132,9 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/clinic/web/v1/appointment/create")
-    Call<AppointmentResponse> createAppointment(
+    Call<AppointmentSingleResponse> createAppointment(
             @Field("date") String appointmentDate,
-            @Field("doctor_id") Integer doctorid,
+            @Field("doctor_id") Long doctorid,
             @Field("patient_id") Integer patientid,
             @Field("status") String status
     );

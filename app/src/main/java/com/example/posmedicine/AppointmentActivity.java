@@ -53,8 +53,8 @@ public class AppointmentActivity extends AppCompatActivity {
         });
 
         service = RestClient.getInstance().getApiService();
-        getLocalAppointment();
-       // getAppointment();
+       // getLocalAppointment();
+        getAppointment();
         Typeface iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
         FontManager.markAsIconContainer(findViewById(R.id.activity_appointment), iconFont);
     }
@@ -67,17 +67,28 @@ public class AppointmentActivity extends AppCompatActivity {
     }
 
     public void getLocalAppointment(){
-        List<LocalAppointment> listAppointment = LocalAppointment.listAll(LocalAppointment.class);
-        if(listAppointment != null){
-            Log.d("data", String.valueOf(listAppointment));
-            LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
+//        List<Appointment> appointments = Appointment.listAll(Appointment.class);
+//        if(appointments.size() != 0){
+//            LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
+//            llm.setOrientation(LinearLayoutManager.VERTICAL);
+//
+//            AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointments,AppointmentActivity.this);
+//            RecyclerView rvAppointment = (RecyclerView)findViewById(R.id.rvAppointment);
+//            rvAppointment.setLayoutManager(llm);
+//            rvAppointment.setAdapter(appointmentAdapter);
+//        }
 
-            LocalAppointmentAdapter appointmentAdapter = new LocalAppointmentAdapter(listAppointment,AppointmentActivity.this);
-            RecyclerView rvAppointment = (RecyclerView)findViewById(R.id.rvAppointment);
-            rvAppointment.setLayoutManager(llm);
-            rvAppointment.setAdapter(appointmentAdapter);
-        }
+//        List<LocalAppointment> listAppointment = LocalAppointment.listAll(LocalAppointment.class);
+//        if(listAppointment != null){
+//            Log.d("data", String.valueOf(listAppointment));
+//            LinearLayoutManager llm = new LinearLayoutManager(AppointmentActivity.this);
+//            llm.setOrientation(LinearLayoutManager.VERTICAL);
+//
+//            LocalAppointmentAdapter appointmentAdapter = new LocalAppointmentAdapter(listAppointment,AppointmentActivity.this);
+//            RecyclerView rvAppointment = (RecyclerView)findViewById(R.id.rvAppointment);
+//            rvAppointment.setLayoutManager(llm);
+//            rvAppointment.setAdapter(appointmentAdapter);
+//        }
 
     }
 

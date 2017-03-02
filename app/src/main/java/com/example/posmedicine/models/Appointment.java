@@ -9,10 +9,10 @@ import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
-public class Appointment extends SugarRecord{
-    @SerializedName("_id")
+public class Appointment{
+    @SerializedName("id")
     @Expose
-    private Long _id;
+    private Integer id;
     @SerializedName("date")
     @Expose
     private String date;
@@ -38,12 +38,12 @@ public class Appointment extends SugarRecord{
     @Expose
     private Patient patient;
 
-    public Long getId() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(Long _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDate() {
